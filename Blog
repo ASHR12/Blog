@@ -1,0 +1,26 @@
+// Start with an empty object
+let jsonStructure = {};
+
+// Add properties one by one
+jsonStructure.countryCode = "";
+jsonStructure.smartFormVersion = "";
+
+// Add nested specialInfo object
+jsonStructure.specialInfo = {
+  customerName: "",
+  timeDepositeAccountNumber: "",
+  requestType: "New",
+  processingType: "NORMAL"
+};
+
+// Add nested specialRequirement object
+jsonStructure.specialRequirement = {
+  specialRequirementDescription: ""
+};
+
+// Add remaining properties
+jsonStructure.remark = "";
+jsonStructure.attachment = "";
+
+// Display the resulting JSON structure
+console.log(JSON.stringify(jsonStructure, null, 2));
