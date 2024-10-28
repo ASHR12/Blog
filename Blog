@@ -1,26 +1,113 @@
-// Start with an empty object
-let jsonStructure = {};
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Limit Checker</title>
+    <style>
+        .container {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .label {
+            display: block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="label">Enter Time Value:</div>
+        <input type="number" id="timeValue" min="0" placeholder="Enter value">
+        
+        <div class="label">Select Unit:</div>
+        <select id="timeUnit">
+            <option value="days">Days</option>
+            <option value="months">Months</option>
+            <option value="years">Years</option>
+        </select>
+        
+        <button onclick="checkTimeLimit()">Check Time Limit</button>
+        <div id="result"></div>
+    </div>
 
-// Add properties one by one
-jsonStructure.countryCode = "";
-jsonStructure.smartFormVersion = "";
+    <script>
+        function checkTimeLimit() {
+            const timeValue = parseInt(document.getElementById('timeValue').value);
+            const timeUnit = document.getElementById('timeUnit').value;
+            const resultDiv = document.getElementById('result');
+            
+            // Validate input
+            if (!timeValue || timeValue < 0) {
+                resultDiv.innerHTML = 'Please enter a valid positive number';
+                return;
+            }
 
-// Add nested specialInfo object
-jsonStructure.specialInfo = {
-  customerName: "",
-  timeDepositeAccountNumber: "",
-  requestType: "New",
-  processingType: "NORMAL"
-};
+            // 18 months = 18 * 31 = 558 days
+            const eighteenMonthsInDays = 18 * 31;
+            let daysEquivalent = 0;
+            
+            switch(timeUnit) {
+                case 'days':
+                    daysEquivalent = timeValue;
+                    break;
+                case 'months':
+                    daysEquivalent = timeValue * 31;
+                    break;
+                case 'years':
+                    daysEquivalent = timeValue * 12 * 31;
+                    break;
+                default:
+                    resultDiv.innerHTML = 'Invalid time unit';
+                    return;
+            }
+            
+            // Create detailed result message
+            let resultMessage = `Input: ${timeValue} ${timeUnit}<br>`;
+            resultMessage += `Equivalent in days: ${daysEquivalent} days<br>`;
+            resultMessage += `18 months limit: ${eighteenMonthsInDays} days<br>`;
+            resultMessage += `Result: `;
+            
+            if (daysEquivalent > eighteenMonthsInDays) {
+                resultMessage += `<span style="color: red;">Exceeds 18 months limit</span>`;
+            } else {
+                resultMessage += `<span style="color: green;">Within 18 months limit</span>`;
+            }
+            
+            resultDiv.innerHTML = resultMessage;
+        }
 
-// Add nested specialRequirement object
-jsonStructure.specialRequirement = {
-  specialRequirementDescription: ""
-};
-
-// Add remaining properties
-jsonStructure.remark = "";
-jsonStructure.attachment = "";
-
-// Display the resulting JSON structure
-console.log(JSON.stringify(jsonStructure, null, 2));
+        // Optional: Allow Enter key to trigger the check
+        document.getElementById('timeValue').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkTimeLimit();
+            }
+        });
+    </script>
+</body>
+</html>
