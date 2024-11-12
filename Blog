@@ -1,113 +1,121 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Time Limit Checker</title>
-    <style>
-        .container {
-            margin: 20px;
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        input, select, button {
-            padding: 8px;
-            margin: 5px;
-            width: 200px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #result {
-            margin-top: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #f9f9f9;
-        }
-        .label {
-            display: block;
-            margin: 5px 0;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="label">Enter Time Value:</div>
-        <input type="number" id="timeValue" min="0" placeholder="Enter value">
-        
-        <div class="label">Select Unit:</div>
-        <select id="timeUnit">
-            <option value="days">Days</option>
-            <option value="months">Months</option>
-            <option value="years">Years</option>
-        </select>
-        
-        <button onclick="checkTimeLimit()">Check Time Limit</button>
-        <div id="result"></div>
-    </div>
+Here’s a refined 7-day Knowledge Transfer (KT) plan for AEM OSGI Forms:
 
-    <script>
-        function checkTimeLimit() {
-            const timeValue = parseInt(document.getElementById('timeValue').value);
-            const timeUnit = document.getElementById('timeUnit').value;
-            const resultDiv = document.getElementById('result');
-            
-            // Validate input
-            if (!timeValue || timeValue < 0) {
-                resultDiv.innerHTML = 'Please enter a valid positive number';
-                return;
-            }
+---
 
-            // 18 months = 18 * 31 = 558 days
-            const eighteenMonthsInDays = 18 * 31;
-            let daysEquivalent = 0;
-            
-            switch(timeUnit) {
-                case 'days':
-                    daysEquivalent = timeValue;
-                    break;
-                case 'months':
-                    daysEquivalent = timeValue * 31;
-                    break;
-                case 'years':
-                    daysEquivalent = timeValue * 12 * 31;
-                    break;
-                default:
-                    resultDiv.innerHTML = 'Invalid time unit';
-                    return;
-            }
-            
-            // Create detailed result message
-            let resultMessage = `Input: ${timeValue} ${timeUnit}<br>`;
-            resultMessage += `Equivalent in days: ${daysEquivalent} days<br>`;
-            resultMessage += `18 months limit: ${eighteenMonthsInDays} days<br>`;
-            resultMessage += `Result: `;
-            
-            if (daysEquivalent > eighteenMonthsInDays) {
-                resultMessage += `<span style="color: red;">Exceeds 18 months limit</span>`;
-            } else {
-                resultMessage += `<span style="color: green;">Within 18 months limit</span>`;
-            }
-            
-            resultDiv.innerHTML = resultMessage;
-        }
+### Day 1: Introduction to AEM Forms and Setup (5 hours)
 
-        // Optional: Allow Enter key to trigger the check
-        document.getElementById('timeValue').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkTimeLimit();
-            }
-        });
-    </script>
-</body>
-</html>
+**Morning Session (2.5 hours)**
+- **AEM Forms Overview**
+  - Key differences between AEM Forms, PDF Forms, and AEM Workbench
+  - Architecture and components for HSBC AEM online forms
+  - Types of forms: Adaptive, HTML5, and PDF
+  - Core capabilities and primary use cases
+
+**Afternoon Session (2.5 hours)**
+- **Local Environment Setup**
+  - System requirements and prerequisites
+  - Installing the AEM Forms add-on package
+  - Setting up the development environment
+  - Basic configuration and validation steps
+
+---
+
+### Day 2: Form Submission Types (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Understanding Submit Actions**
+  - Overview of default submit actions
+  - Handling submissions to REST endpoints
+
+**Afternoon Session (2.5 hours)**
+- **Advanced Submission Handling**
+  - Custom submit actions
+  - Managing attachments and form data processing
+
+---
+
+### Day 3: Authentication Implementation (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Authentication Basics**
+  - Understanding HSBC’s authentication process for forms
+
+**Afternoon Session (2.5 hours)**
+- **Multi-market Form Handling**
+  - Implementation specifics for AEM Forms and handling multiple forms for diverse markets
+
+---
+
+### Day 4: Java Code Deep Dive (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Core Concepts**
+  - Review of code structure and architecture
+  - Common programming patterns for AEM Forms
+  - Error handling and logging best practices
+
+**Afternoon Session (2.5 hours)**
+- **Code Structure**
+  - Organizing packages effectively
+  - Implementing services
+  - Component integration and key integration points
+
+---
+
+### Day 5: Feature Development (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Development Workflow**
+  - Requirements analysis for feature development
+  - Relevant design patterns
+  - Component development steps
+  - Testing strategies
+
+**Afternoon Session (2.5 hours)**
+- **Implementation Guidelines**
+  - Coding standards and best practices
+  - Performance considerations
+  - Documentation requirements
+  - Code review process
+
+---
+
+### Day 6: Code Maintenance and Version Control (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Code Maintenance**
+  - Code commit strategy and versioning process
+
+**Afternoon Session (2.5 hours)**
+- **Version Control Strategy**
+  - Branching strategy for development
+  - Release management and deployment
+  - Environment management best practices
+
+---
+
+### Day 7: Debugging and Troubleshooting (5 hours)
+
+**Morning Session (2.5 hours)**
+- **Debugging Techniques**
+  - Debug mode setup
+  - Using IDE debugging tools
+  - Log analysis for troubleshooting
+  - Common issues and solutions
+
+**Afternoon Session (2.5 hours)**
+- **Maintenance Mode and Support**
+  - Running AEM Forms in maintenance mode
+  - Performance troubleshooting techniques
+  - Support procedures
+  - Documentation and knowledge-sharing practices
+
+---
+
+**Prerequisites:**
+- Proficiency in Java development
+- Basic understanding of AEM
+- Development environment access and setup
+- Access to AEM Forms documentation and required software
+
+This plan provides a balanced and thorough training for AEM OSGI Forms, covering foundational knowledge, development practices, and advanced troubleshooting.
