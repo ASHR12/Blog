@@ -1,12 +1,1 @@
-String(Math.floor(Math.random() * 9 + 1)) + Array.from({length: 19}, () => Math.floor(Math.random() * 10)).join(''))
-var selectedValue = this.rawValue; // Get the selected value (e.g., MA, AF)
-if (selectedValue !== null) {
-    // Loop through all items in the dropdown to find the matching text
-    for (var i = 0; i < this.length; i++) {
-        if (this.getItemAt(i, false) === selectedValue) {
-            var displayText = this.getItemAt(i, true); // Get the display text for the value
-            xfa.host.messageBox("Selected Text: " + displayText); // Example: Show a message box with the text
-            break;
-        }
-    }
-}
+
