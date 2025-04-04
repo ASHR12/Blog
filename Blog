@@ -1,1 +1,50 @@
+// Assume this code runs within an AEM Forms/LiveCycle Designer script context
+// where 'xfa' and potentially custom objects like 'soMain' are available.
+
+function createUltraSimpleAddressStructure() {
+    var output = {}; // The main object to build
+	var finalOutPut =[]
+ 
+
+    // --- Process Principal Address ---
+    // Get the flag value directly from its field
+    output.principalAddressFlag = soMain.getFieldValue("Principal.Flag"); // Should return "Y" or "N"
+    output.principalAddressData = {}; // Initialize the data object
+    // Directly populate fields - rely on getFieldValue to return "" if flag is N
+    output.principalAddressData.field1 = soMain.getFieldValue("Principal.Street");
+    output.principalAddressData.field2 = soMain.getFieldValue("Principal.Apt");
+    output.principalAddressData.field3 = soMain.getFieldValue("Principal.City");
+    output.principalAddressData.field4 = soMain.getFieldValue("Principal.Zip");
+
+    // --- Process Registered Address ---
+    output.registeredAddressFlag = soMain.getFieldValue("Registered.Flag");
+    output.registeredAddressData = {};
+    output.registeredAddressData.field1 = soMain.getFieldValue("Registered.Street");
+    output.registeredAddressData.field2 = soMain.getFieldValue("Registered.Suite");
+    output.registeredAddressData.field3 = soMain.getFieldValue("Registered.City");
+    output.registeredAddressData.field4 = soMain.getFieldValue("Registered.Zip");
+
+    // --- Process Correspondence Address ---
+    output.correspondenceAddressFlag = soMain.getFieldValue("Correspondence.Flag"); // Expected to be "N" in this example
+    output.correspondenceAddressData = {};
+    // These calls should return "" because the flag is "N" (based on the simulated getFieldValue)
+    output.correspondenceAddressData.field1 = soMain.getFieldValue("Correspondence.POBox");
+    output.correspondenceAddressData.field2 = soMain.getFieldValue("Correspondence.City");
+    output.correspondenceAddressData.field3 = soMain.getFieldValue("Correspondence.Zip");
+    output.correspondenceAddressData.field4 = soMain.getFieldValue("Correspondence.Field4");
+    output.correspondenceAddressData.field5 = soMain.getFieldValue("Correspondence.Field5");
+    output.correspondenceAddressData.field6 = soMain.getFieldValue("Correspondence.Field6");
+    output.correspondenceAddressData.field7 = soMain.getFieldValue("Correspondence.Field7");
+    output.correspondenceAddressData.field8 = soMain.getFieldValue("Correspondence.Country");
+
+    // --- Process Card Statement Address ---
+    output.corporateCreditCardStatementAddressFlag = soMain.getFieldValue("Card.Flag");
+    output.corporateCreditCardStatementAddressData = {};
+    output.corporateCreditCardStatementAddressData.field1 = soMain.getFieldValue("Card.POBox");
+    output.corporateCreditCardStatementAddressData.field2 = soMain.getFieldValue("Card.City");
+
+    // --- Add more address types following the same direct pattern ---
+
+    finalOutPut.push(output);
+}
 
